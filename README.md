@@ -11,3 +11,8 @@ Las consultas pueden hacerse de distintas maneras para obtener el mismo resultad
 - Vistas.
 - Estructura de datos temporales.
 - Buenas prácticas.
+
+
+## Herramientas para realizar el proyecto
+- PostgreSQL.
+- DBeaver.
