@@ -78,8 +78,8 @@ Para seguir evolucionando en SQL y análisis de datos:
 - Mejorar la optimización de consultas
 - Practicar con casos reales de negocio
 - Explorar otros sistemas gestores (MySQL, SQL Server, etc.)
-- Integrar SQL con herramientas de análisis como Python o Power BI.
-- Resolver más ejercicios tipo casos de negocio reales.
+- Integrar SQL con herramientas de análisis como Python o Power BI
+- Resolver más ejercicios tipo casos de negocio reales
 
 ## Autora
 
