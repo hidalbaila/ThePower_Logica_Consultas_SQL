@@ -14,8 +14,8 @@ Las consultas pueden hacerse de distintas maneras para obtener el mismo resultad
 
 
 ## 🛠 Herramientas para realizar el proyecto
-- PostgreSQL.
-- DBeaver.
+- PostgreSQL
+- DBeaver
 - Git & GitHub
 
 
