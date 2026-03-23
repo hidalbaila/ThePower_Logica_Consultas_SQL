@@ -81,6 +81,6 @@ Para seguir evolucionando en SQL y análisis de datos:
 - Integrar SQL con herramientas de análisis como Python o Power BI
 - Resolver más ejercicios tipo casos de negocio reales
 
-## Autora
+## ✒ Autora
 
-✒ Teresa Hidalgo (https://github.com/hidalbaila)
+Teresa Hidalgo (https://github.com/hidalbaila)
