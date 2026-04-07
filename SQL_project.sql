@@ -879,8 +879,8 @@ FROM cliente_rentas_temporal;
 CREATE TEMPORARY TABLE peliculas_alquiladas AS
 SELECT 
     f.film_id,
-    f.title AS Titulo_Pelicula,
-    COUNT(r.rental_id) AS Total_Alquileres
+    f.title AS "título_película",
+    COUNT(r.rental_id) AS "total_alquileres"
 FROM film f
 INNER JOIN inventory i ON f.film_id = i.film_id
 INNER JOIN rental r ON i.inventory_id = r.inventory_id
@@ -1141,8 +1141,8 @@ CROSS JOIN store s2 ;
 --========================================================================================
 SELECT
     c.customer_id,
-    CONCAT(c.first_name, ' ', c.last_name) AS nombre_completo_cliente,
-    COUNT(r.rental_id) AS número_películas_alquiladas
+    CONCAT(c.first_name, ' ', c.last_name) AS "nombre_completo_cliente",
+    COUNT(r.rental_id) AS "número_películas_alquiladas"
 FROM customer c
 LEFT JOIN rental r ON c.customer_id = r.customer_id
 GROUP BY c.customer_id, c.first_name, c.last_name
