@@ -876,21 +876,21 @@ FROM cliente_rentas_temporal;
 -- 52. Crea una tabla temporal llamada “peliculas_alquiladasˮ que almacene las 
 -- películas que han sido alquiladas al menos 10 veces.
 --========================================================================================
-WITH peliculas_alquiladas AS (
-	SELECT f.film_id,
-	       f.title AS "Titulo_Pelicula",
-	       COUNT(r.rental_id) AS "Total_Alquileres"
-	FROM film f
-	INNER JOIN inventory i ON f.film_id = i.film_id
-	INNER JOIN rental r ON i.inventory_id = r.inventory_id
-	GROUP BY f.film_id, f.title
-	HAVING COUNT(r.rental_id) >= 10
-)
+CREATE TEMPORARY TABLE peliculas_alquiladas AS
+SELECT 
+    f.film_id,
+    f.title AS Titulo_Pelicula,
+    COUNT(r.rental_id) AS Total_Alquileres
+FROM film f
+INNER JOIN inventory i ON f.film_id = i.film_id
+INNER JOIN rental r ON i.inventory_id = r.inventory_id
+GROUP BY f.film_id, f.title
+HAVING COUNT(r.rental_id) >= 10;
+
 SELECT * FROM peliculas_alquiladas;
 
 -- Resultado Consulta 52: Se listan películas alquiladas al menos 10 veces.
--- Se usa un CTE (WITH ... AS) que existe solo durante la consulta, 
--- a diferencia de una tabla temporal que permanece durante la sesión.
+-- Se usa una tabla temporal que permanece durante la sesión.
 
 
 --========================================================================================
@@ -1140,15 +1140,15 @@ CROSS JOIN store s2 ;
 -- películas alquiladas.
 --========================================================================================
 SELECT
-	c.customer_id,
-	CONCAT (first_name, ' ', last_name ) AS "nombre_completo_cliente",
-	COUNT(r.rental_id) AS "número_películas_alquiladas"
-FROM rental r 
-LEFT JOIN customer c ON r.customer_id = c.customer_id
+    c.customer_id,
+    CONCAT(c.first_name, ' ', c.last_name) AS nombre_completo_cliente,
+    COUNT(r.rental_id) AS número_películas_alquiladas
+FROM customer c
+LEFT JOIN rental r ON c.customer_id = r.customer_id
 GROUP BY c.customer_id, c.first_name, c.last_name
 ORDER BY COUNT(r.rental_id) DESC;
 
--- Resultado Consulta 64: Muestra el total de películas alquiladas por cada cliente.
--- COUNT(r.rental_id) cuenta todos los alquileres.
--- LEFT JOIN asegura incluir clientes que hayan alquilado al menos una película.
+-- Resultado Consulta 64: Muestra el total de películas alquiladas por TODOS los clientes.
+-- COUNT(r.rental_id) cuenta los alquileres de cada cliente (0 si no tiene ninguno).
+-- LEFT JOIN asegura incluir TODOS los clientes, incluso aquellos sin alquileres.
 -- ORDER BY COUNT(r.rental_id) DESC muestra primero los clientes que más han alquilado.
